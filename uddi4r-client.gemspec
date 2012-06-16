@@ -16,7 +16,5 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "patron"
-  s.add_dependency "mongo"
-  s.add_dependency "json"
+  %w(patron mongo bson_ext json).each {|p| s.add_dependency p}
 end
