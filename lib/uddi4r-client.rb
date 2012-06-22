@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'patron'
 require 'json'
-require 'uddi4r-client/mongo_proxy'
 
 module UDDI4R
   class Client
@@ -18,10 +17,12 @@ module UDDI4R
 
     def invoke title, *args
       service = found(title)
-      if service['type'] == 'MongoDB' then
-        resp = UDDI4R::MongoProxy.execute(service['param'], service['script'], args)
-        resp.to_json
-      end
+      type = service['type']
+
+      require "uddi4r-client/#{type.downcase}_proxy"
+      klass = UDDI4R.const_get("#{type}Proxy")
+
+      klass.execute(service['param'], service['script'], args).to_json
     end
   end
 end
