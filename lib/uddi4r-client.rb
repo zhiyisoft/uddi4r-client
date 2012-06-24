@@ -22,7 +22,7 @@ module UDDI4R
       require "uddi4r-client/#{type.downcase}_proxy"
       klass = UDDI4R.const_get("#{type}Proxy")
 
-      klass.execute(service['param'], service['script'], args).to_json
+      klass.execute(service['param'], service['script'], args)
     end
   end
 end

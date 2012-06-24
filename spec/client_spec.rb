@@ -17,7 +17,7 @@ describe UDDI4R::Client do
       'com.zhiyisoft.prometheus.configitems.switchers' => {
         "title" => "com.zhiyisoft.prometheus.configitems.switchers", "desc" => "配置项交换机清单", "type" => "Restful", "input" => { "data_type" => "json" }, "output" => { "data_type" => "json" }, "param" => { "url" => "http://127.0.0.1:9393/devices", "method" => "get"}},
       'com.zhiyisoft.prometheus.monitor.device.cpu' => {
-        "title" => "com.zhiyisoft.prometheus.monitor.device.cpu", "desc" => "设备处理器使用情况", "type" => "PrometheusIce", "input" => { "data_type" => "json" }, "output" => { "data_type" => "json" }, "param" => { "host" => "www.scsyxx.com.cn", "adapter" => "business", "port" => "10000"}}
+        "title" => "com.zhiyisoft.prometheus.monitor.device.cpu", "desc" => "设备处理器使用情况", "type" => "PrometheusIce", "input" => {"data_type" => "json"}, "output" => { "data_type" => "json" }, "param" => { "host" => "www.scsyxx.com.cn", "adapter" => "business", "port" => "10000", "action" => {"sn" => "network.generic.data", "goal" => "cpuUsage"}}}
     }
     @title.each do |k,v|
       @client.expects(:found).with(k).returns(v)
@@ -35,7 +35,9 @@ describe UDDI4R::Client do
   describe "Run every service:" do
     it "run someone service" do
       @title.keys.each do |t|
-        JSON.parse(@client.invoke(t)).should_not be_empty
+        value = @client.invoke(t)
+        p value
+        JSON.parse(value).should_not be_empty
       end
     end
   end

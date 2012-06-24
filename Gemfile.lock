@@ -1,6 +1,6 @@
 GIT
   remote: git@task.zhiyisoft.com:bazaar/suyu/zeroc-ice-ruby
-  revision: 740d5ec93b425530092b880e355e05e3e9d43cec
+  revision: 399b4409967f58b09c571617a08d8b9e9750cf6e
   specs:
     zeroc-ice-ruby (3.4.2)
 
