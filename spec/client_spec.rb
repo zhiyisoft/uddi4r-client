@@ -15,7 +15,7 @@ describe UDDI4R::Client do
       #'com.zhiyisoft.prometheus.configitems.list' => {
       #  "title" => "com.zhiyisoft.prometheus.configitems.list", "desc" => "配置项清单", "type" => "MongoDB", "input" => { "data_type" => "json" }, "output" => { "data_type" => "json" }, "param" => { "host" => "127.0.0.1", "database" => "shell_development", "table" => "config_item_items" }},
       'com.zhiyisoft.prometheus.configitems.switchers' => {
-        "title" => "com.zhiyisoft.prometheus.configitems.switchers", "desc" => "配置项交换机清单", "type" => "Restful", "input" => { "data_type" => "json" }, "output" => { "data_type" => "json" }, "param" => { "url" => "http://10.132.130.249/ci/items", "method" => "get"}},
+        "title" => "com.zhiyisoft.prometheus.configitems.switchers", "desc" => "配置项交换机清单", "type" => "Restful", "input" => { "data_type" => "json" }, "output" => { "data_type" => "json" }, "param" => { "url" => "http://127.0.0.1:9393/devices", "method" => "get"}},
       'com.zhiyisoft.prometheus.monitor.device.cpu' => {
         "title" => "com.zhiyisoft.prometheus.monitor.device.cpu", "desc" => "设备处理器使用情况", "type" => "PrometheusIce", "input" => { "data_type" => "json" }, "output" => { "data_type" => "json" }, "param" => { "host" => "www.scsyxx.com.cn", "adapter" => "business", "port" => "10000"}}
     }
