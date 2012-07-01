@@ -24,5 +24,9 @@ module UDDI4R
 
       klass.execute(service['param'], service['script'], args)
     end
+
+    def register *args
+      @session.post("/register", args)
+    end
   end
 end
