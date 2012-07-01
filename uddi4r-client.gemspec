@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "UDDI4R Client."
   s.description = "UDDI4R Client for Prometheus."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"]
   s.test_files = Dir["test/**/*"]
 
   %w(patron mongo bson_ext json).each {|p| s.add_dependency p}
