@@ -11,7 +11,7 @@ module UDDI4R
     end
 
     def found title
-      resp = @session.post("/#{title}", {})
+      resp = @session.post("/services/#{title}", {})
       JSON.parse(resp.body)
     end
 
