@@ -6,7 +6,11 @@ module UDDI4R
       session = Patron::Session.new
       session.timeout = 10
       session.base_url = options['url']
-      resp = session.get("")
+      if options['method']=='get'
+        resp = session.get("")
+      else
+        resp = session.post("")
+      end
       resp.body
     end
   end
