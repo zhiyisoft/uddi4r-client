@@ -15,9 +15,23 @@ describe UDDI4R::Client do
       'com.zhiyisoft.prometheus.monitor.device.cpu' => {
         "title" => "com.zhiyisoft.prometheus.monitor.device.cpu", "desc" => "设备处理器使用情况", "type" => "PrometheusIce", "input" => {"data_type" => "json"}, "output" => { "data_type" => "json" }, "param" => { "host" => "www.scsyxx.com.cn", "adapter" => "business", "port" => "10000", "action" => {"sn" => "network.generic.data", "goal" => "cpuUsage"}}}
     }
+
+    @wrapper = {
+        "title" => "com.zhiyisoft.prometheus.util.ice.httpwrapper", 
+        "desc" => "Ice Web包装器", 
+        "type" => "Restful", 
+        "input" => {"data_type" => "json"}, 
+        "output" => { "data_type" => "json" }, 
+        "param" => { 
+          "url" => "http://repos.zhiyisoft.com/icewrapper", 
+          "method" => "post"
+        }
+    }
+
     @title.each do |k,v|
-      @client.expects(:found).with(k).returns(v)
+      @client.stubs(:found).with(k).returns(v)
     end
+    @client.stubs(:found).with(@wrapper['title']).returns(@wrapper)
   end
 
   describe "Get service define use uddi4r client:" do

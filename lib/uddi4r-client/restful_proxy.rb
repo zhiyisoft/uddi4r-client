@@ -9,6 +9,7 @@ module UDDI4R
       if options['method']=='get'
         resp = session.get("")
       else
+        p '---------------------', options, args
         resp = session.post("", args)
       end
       resp.body

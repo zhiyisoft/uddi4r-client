@@ -19,10 +19,13 @@ module UDDI4R
       service = found(title)
       type = service['type']
 
-      require "uddi4r-client/#{type.downcase}_proxy"
-      klass = UDDI4R.const_get("#{type}Proxy")
-
-      klass.execute(service['param'], service['script'], args)
+      begin
+        require "uddi4r-client/#{type.downcase}_proxy"
+        klass = UDDI4R.const_get("#{type}Proxy")
+        klass.execute(service['param'], service['script'], args)
+      rescue LoadError => ex
+        invoke('com.zhiyisoft.prometheus.util.ice.httpwrapper', args)
+      end
     end
 
     def register hash_args
