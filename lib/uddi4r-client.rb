@@ -22,9 +22,9 @@ module UDDI4R
       begin
         require "uddi4r-client/#{type.downcase}_proxy"
         klass = UDDI4R.const_get("#{type}Proxy")
-        klass.execute(service['param'], service['script'], args)
+        klass.execute(service['param'], service['script'], *args)
       rescue LoadError => ex
-        invoke('com.zhiyisoft.prometheus.util.ice.httpwrapper', args)
+        invoke('com.zhiyisoft.prometheus.util.ice.httpwrapper', {data: service['param'].to_json})
       end
     end
 
