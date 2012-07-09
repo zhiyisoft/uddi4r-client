@@ -12,8 +12,15 @@ describe UDDI4R::Client do
   before(:each) do
     @client = UDDI4R::Client.new("None") # "http://localhost:9393/services")
     @title = {
-      'com.zhiyisoft.prometheus.monitor.device.cpu' => {
-        "title" => "com.zhiyisoft.prometheus.monitor.device.cpu", "desc" => "设备处理器使用情况", "type" => "PrometheusIce", "input" => {"data_type" => "json"}, "output" => { "data_type" => "json" }, "param" => { "host" => "www.scsyxx.com.cn", "adapter" => "business", "port" => "10000", "action" => {"sn" => "network.generic.data", "goal" => "cpuUsage"}}}
+      'com.zhiyisoft.prometheus.monitor.device.memory' => {
+        "title" => "com.zhiyisoft.prometheus.monitor.device.memory", 
+	"desc" => "设备处理器使用情况", 
+	"type" => "PrometheusIce", 
+	"input" => {"data_type" => "json"}, 
+	"output" => { "data_type" => "json" }, 
+	"param" => { 
+	  "host" => "www.scsyxx.com.cn", "adapter" => "business", 
+	  "port" => "10000", "action" => {"sn" => "network.generic.data", "goal" => "memoryUsage"}}}
     }
 
     @wrapper = {
@@ -46,6 +53,7 @@ describe UDDI4R::Client do
     it "run someone service" do
       @title.keys.each do |t|
         value = @client.invoke(t)
+	p value
         JSON.parse(value).should_not be_empty
       end
     end
